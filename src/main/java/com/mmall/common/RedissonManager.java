@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
+ * redisson初始化的类
  * @author schuke
  * @date 2019/4/16 13:52
  */

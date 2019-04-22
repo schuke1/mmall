@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 定时关单
  * @author schuke
  * @date 2019/4/16 13:44
  */

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 门户-购物车
  * @author schuke
  * @date 2019/1/17 21:37
  */
@@ -30,6 +31,12 @@ public class CartController {
     @Autowired
     private ICartService iCartService;
 
+
+    /**
+     * 购物车List
+     * @param request
+     * @return
+     */
     @RequestMapping("list.do")
     @ResponseBody
     public ServerResponse <CartVo> list(HttpServletRequest request) {
@@ -46,6 +53,13 @@ public class CartController {
         return iCartService.list(user.getId());
     }
 
+    /**
+     * 加入购物车
+     * @param request
+     * @param count
+     * @param productId
+     * @return
+     */
     @RequestMapping("add.do")
     @ResponseBody
     public ServerResponse <CartVo> add(HttpServletRequest request, Integer count, Integer productId) {
@@ -63,6 +77,13 @@ public class CartController {
     }
 
 
+    /**
+     * 更新购物车
+     * @param request
+     * @param count
+     * @param productId
+     * @return
+     */
     @RequestMapping("update.do")
     @ResponseBody
     public ServerResponse <CartVo> update(HttpServletRequest request, Integer count, Integer productId) {
@@ -80,6 +101,12 @@ public class CartController {
     }
 
 
+    /**
+     * 删除购物车商品
+     * @param request
+     * @param productIds
+     * @return
+     */
     @RequestMapping("delete_product.do")
     @ResponseBody
     public ServerResponse <CartVo> deleteProduct(HttpServletRequest request, String productIds) {
@@ -96,6 +123,11 @@ public class CartController {
         return iCartService.deleteProduct(user.getId(), productIds);
     }
 
+    /**
+     * 全选
+     * @param request
+     * @return
+     */
     @RequestMapping("select_all.do")
     @ResponseBody
     public ServerResponse <CartVo> selectAll(HttpServletRequest request) {
@@ -112,6 +144,11 @@ public class CartController {
         return iCartService.selectOrUnSelect(user.getId(), null, Const.Cart.CHECKED);
     }
 
+    /**
+     * 全反选
+     * @param request
+     * @return
+     */
     @RequestMapping("un_select_all.do")
     @ResponseBody
     public ServerResponse <CartVo> unSelectAll(HttpServletRequest request) {
@@ -129,6 +166,12 @@ public class CartController {
     }
 
 
+    /**
+     * 单独选
+     * @param request
+     * @param productId
+     * @return
+     */
     @RequestMapping("select.do")
     @ResponseBody
     public ServerResponse <CartVo> select(HttpServletRequest request, Integer productId) {
@@ -145,6 +188,13 @@ public class CartController {
         return iCartService.selectOrUnSelect(user.getId(), productId, Const.Cart.CHECKED);
     }
 
+
+    /**
+     * 单独反选
+     * @param request
+     * @param productId
+     * @return
+     */
     @RequestMapping("un_select.do")
     @ResponseBody
     public ServerResponse <CartVo> unSelect(HttpServletRequest request, Integer productId) {
@@ -162,6 +212,11 @@ public class CartController {
     }
 
 
+    /**
+     * 查询当前用户的购物车里面的产品数量
+     * @param request
+     * @return
+     */
     @RequestMapping("get_cart_product_count.do")
     @ResponseBody
     public ServerResponse <Integer> getCartProductCount(HttpServletRequest request) {
@@ -178,12 +233,4 @@ public class CartController {
         return iCartService.getCartProductCount(user.getId());
     }
 
-
-    //全选
-    //全反选
-
-    //单独选
-    //单独反选
-
-    //查询当前用户的购物车里面的产品数量,如果一个产品有10个,那么数量就是10.
 }

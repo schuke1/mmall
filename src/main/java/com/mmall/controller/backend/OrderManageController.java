@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 后台-订单管理
  * @author schuke
  * @date 2019/3/14 20:22
  */
@@ -39,7 +40,7 @@ public class OrderManageController {
 
 
     /**
-     * 后台管理 查询订单list
+     * 查询订单list
      *
      * @param request
      * @param pageNum
@@ -101,7 +102,7 @@ public class OrderManageController {
 
 
     /**
-     * 后台搜索
+     * 搜索
      *
      * @param request
      * @param orderNo
@@ -134,7 +135,7 @@ public class OrderManageController {
 
 
     /**
-     * 后台管理员发货
+     * 管理员发货
      *
      * @param request
      * @param orderNo

@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 门户-收获地址
  * Created by schuke
  */
 
@@ -34,6 +35,12 @@ public class ShippingController {
     private IShippingService iShippingService;
 
 
+    /**
+     * 增加收获地址
+     * @param request
+     * @param shipping
+     * @return
+     */
     @RequestMapping("add.do")
     @ResponseBody
     public ServerResponse add(HttpServletRequest request, Shipping shipping) {
@@ -51,6 +58,12 @@ public class ShippingController {
     }
 
 
+    /**
+     * 删除收获地址
+     * @param request
+     * @param shippingId
+     * @return
+     */
     @RequestMapping("del.do")
     @ResponseBody
     public ServerResponse del(HttpServletRequest request, Integer shippingId) {
@@ -67,6 +80,12 @@ public class ShippingController {
         return iShippingService.del(user.getId(), shippingId);
     }
 
+    /**
+     * 更新收获地址
+     * @param request
+     * @param shipping
+     * @return
+     */
     @RequestMapping("update.do")
     @ResponseBody
     public ServerResponse update(HttpServletRequest request, Shipping shipping) {
@@ -84,6 +103,12 @@ public class ShippingController {
     }
 
 
+    /**
+     * 根据id搜索地址
+     * @param request
+     * @param shippingId
+     * @return
+     */
     @RequestMapping("select.do")
     @ResponseBody
     public ServerResponse <Shipping> select(HttpServletRequest request, Integer shippingId) {
@@ -101,6 +126,13 @@ public class ShippingController {
     }
 
 
+    /**
+     * 展示所有地址
+     * @param pageNum
+     * @param pageSize
+     * @param request
+     * @return
+     */
     @RequestMapping("list.do")
     @ResponseBody
     public ServerResponse <PageInfo> list(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,

@@ -20,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * 后台-用户管理
+ */
 @Controller
 @RequestMapping("/manage/user/")
 public class UserManageController {
@@ -113,12 +116,25 @@ public class UserManageController {
         return ServerResponse.createByErrorMessage("用户未登录，无法获得当前用户的信息");
     }
 
+    /**
+     * 忘记问题
+     * @param username
+     * @return
+     */
     @RequestMapping(value = "forget_get_question.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> forgetGetQuestion(String username) {
         return iUserService.selectQuestion(username);
     }
 
+
+    /**
+     * 检查忘记问题回答
+     * @param username
+     * @param question
+     * @param answer
+     * @return
+     */
     @RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> forgetCheckAnswer(String username, String question, String answer) {
@@ -126,12 +142,26 @@ public class UserManageController {
     }
 
 
+    /**
+     * 忘记密码
+     * @param username
+     * @param passwordNew
+     * @param forgetToken
+     * @return
+     */
     @RequestMapping(value = "forget_rest_password.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> forgetRestPassword(String username, String passwordNew, String forgetToken) {
         return iUserService.forgetResetPassword(username, passwordNew, forgetToken);
     }
 
+    /**
+     * 重置密码
+     * @param request
+     * @param passwordOld
+     * @param passwordNew
+     * @return
+     */
     @RequestMapping(value = "rest_password.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> restPassword(HttpServletRequest request, String passwordOld, String passwordNew) {
@@ -149,6 +179,12 @@ public class UserManageController {
     }
 
 
+    /**
+     * 更新个人资料
+     * @param request
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "update_information.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <User> update_information(HttpServletRequest request, User user) {
@@ -173,6 +209,11 @@ public class UserManageController {
     }
 
 
+    /**
+     * 获取个人资料
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "get_information.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <User> get_information(HttpServletRequest request) {

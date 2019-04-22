@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 门户-用户
  * Created by schuke
  */
 @Controller
@@ -54,6 +55,12 @@ public class UserController {
         return response;
     }
 
+    /**
+     * 退出
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "logout.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> logout(HttpServletRequest request, HttpServletResponse response) {
@@ -63,6 +70,11 @@ public class UserController {
         return ServerResponse.createBySuccess();
     }
 
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> register(User user) {
@@ -70,6 +82,12 @@ public class UserController {
     }
 
 
+    /**
+     * 检查用户名和Em
+     * @param str
+     * @param type
+     * @return
+     */
     @RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> checkValid(String str, String type) {
@@ -77,6 +95,11 @@ public class UserController {
     }
 
 
+    /**
+     * 获取用户信息
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "get_user_info.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <User> getUserInfo(HttpServletRequest request) {
@@ -95,6 +118,11 @@ public class UserController {
     }
 
 
+    /**
+     * 忘记问题
+     * @param username
+     * @return
+     */
     @RequestMapping(value = "forget_get_question.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> forgetGetQuestion(String username) {
@@ -102,6 +130,13 @@ public class UserController {
     }
 
 
+    /**
+     * 检查忘记问题答案
+     * @param username
+     * @param question
+     * @param answer
+     * @return
+     */
     @RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> forgetCheckAnswer(String username, String question, String answer) {
@@ -109,6 +144,13 @@ public class UserController {
     }
 
 
+    /**
+     * 忘记密码
+     * @param username
+     * @param passwordNew
+     * @param forgetToken
+     * @return
+     */
     @RequestMapping(value = "forget_reset_password.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> forgetRestPassword(String username, String passwordNew, String forgetToken) {
@@ -116,6 +158,13 @@ public class UserController {
     }
 
 
+    /**
+     * 密码重置
+     * @param request
+     * @param passwordOld
+     * @param passwordNew
+     * @return
+     */
     @RequestMapping(value = "reset_password.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <String> resetPassword(HttpServletRequest request, String passwordOld, String passwordNew) {
@@ -133,6 +182,12 @@ public class UserController {
     }
 
 
+    /**
+     * 更新个人资料
+     * @param user
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "update_information.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <User> update_information(User user, HttpServletRequest request) {
@@ -156,6 +211,11 @@ public class UserController {
         return response;
     }
 
+    /**
+     * 获取个人资料
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "get_information.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse <User> get_information(HttpServletRequest request) {

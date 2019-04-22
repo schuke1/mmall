@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 后台-类目
  * @author schuke
  * @date 2018/11/10 15:17
  */
@@ -32,6 +33,14 @@ public class CategoryManageController {
     @Autowired
     private ICategoryService iCategoryService;
 
+
+    /**
+     * 增加类目
+     * @param request
+     * @param categoryName
+     * @param parentId
+     * @return
+     */
     @RequestMapping("add_category.do")
     @ResponseBody
     public ServerResponse addCategory(HttpServletRequest request, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") int parentId) {
@@ -57,6 +66,13 @@ public class CategoryManageController {
     }
 
 
+    /**
+     * 命名类目名
+     * @param request
+     * @param categoryId
+     * @param categoryName
+     * @return
+     */
     @RequestMapping("set_category_name.do")
     @ResponseBody
     public ServerResponse setCategoryName(HttpServletRequest request, Integer categoryId, String categoryName) {
@@ -78,6 +94,12 @@ public class CategoryManageController {
         return iCategoryService.updateCategoryName(categoryId, categoryName);
     }
 
+    /**
+     * 获取类目名
+     * @param request
+     * @param categoryId
+     * @return
+     */
     @RequestMapping("get_category.do")
     public ServerResponse getChildrenParallelCategory(HttpServletRequest request, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId) {
        /* String loginToken = CookieUtil.readLoginToken(request);
@@ -99,6 +121,12 @@ public class CategoryManageController {
         return iCategoryService.getChildrenParallelCategory(categoryId);
     }
 
+    /**
+     * 获取子类目
+     * @param request
+     * @param categoryId
+     * @return
+     */
     @RequestMapping("get_deep_category.do")
     public ServerResponse getCategoryAndDeepChildrenCategory(HttpServletRequest request, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId) {
       /*  String loginToken = CookieUtil.readLoginToken(request);

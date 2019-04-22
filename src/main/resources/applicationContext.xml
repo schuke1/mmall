@@ -11,11 +11,11 @@
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
+    <!--扫描Controller的任务交给dispatcher-servlet.xml-->
     <context:component-scan base-package="com.mmall" annotation-config="true">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--<context:annotation-config/>-->
     <aop:aspectj-autoproxy/>
 
     <!-- 二期新增spring schedule的时候新增的 -->

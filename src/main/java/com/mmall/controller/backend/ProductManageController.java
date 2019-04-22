@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
+ * 后台-商品管理
  * @author schuke
  * @date 2018/12/4 21:11
  */
@@ -40,6 +41,12 @@ public class ProductManageController {
     @Autowired
     private IFileService iFileService;
 
+    /**
+     * 保存商品信息
+     * @param request
+     * @param product
+     * @return
+     */
     @RequestMapping("save.do")
     @ResponseBody
     public ServerResponse productSave(HttpServletRequest request, Product product) {
@@ -62,6 +69,13 @@ public class ProductManageController {
         return iProductService.saveOrUpdateProduct(product);
     }
 
+    /**
+     * 设置商品状态
+     * @param request
+     * @param productId
+     * @param status
+     * @return
+     */
     @RequestMapping("set_sale_status.do")
     @ResponseBody
     public ServerResponse setSaleStatus(HttpServletRequest request, Integer productId, Integer status) {
@@ -84,6 +98,12 @@ public class ProductManageController {
     }
 
 
+    /**
+     * 获取商品详情
+     * @param request
+     * @param productId
+     * @return
+     */
     @RequestMapping("detail.do")
     @ResponseBody
     public ServerResponse getDetail(HttpServletRequest request, Integer productId) {
@@ -106,6 +126,13 @@ public class ProductManageController {
         return iProductService.manageProductDetail(productId);
     }
 
+    /**
+     * 获取商品List
+     * @param request
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("list.do")
     @ResponseBody
     public ServerResponse getList(HttpServletRequest request, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
@@ -128,6 +155,15 @@ public class ProductManageController {
         return iProductService.getProductList(pageNum, pageSize);
     }
 
+    /**
+     * 搜索商品
+     * @param request
+     * @param productName
+     * @param productId
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("search.do")
     @ResponseBody
     public ServerResponse productSearch(HttpServletRequest request, String productName, Integer productId, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
@@ -151,6 +187,12 @@ public class ProductManageController {
 
     }
 
+    /**
+     * 上传文件
+     * @param file
+     * @param request
+     * @return
+     */
     @RequestMapping("upload.do")
     @ResponseBody
     public ServerResponse upload(@RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request) {
@@ -185,6 +227,13 @@ public class ProductManageController {
         return ServerResponse.createBySuccess(fileMap);
     }
 
+    /**
+     * 富文本图片上传
+     * @param file
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("richtext_img_upload.do")
     @ResponseBody
     public Map richtextImgUpload(@RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
